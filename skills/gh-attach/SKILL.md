@@ -14,7 +14,17 @@ license: MIT
 gh extension list | grep -q 'gh attach' || gh extension install ekilmer/gh-attach
 ```
 
-Uploads use a GitHub browser session cookie, not the `gh` token. By default, `gh` must be authenticated so `gh-attach` can select the matching browser account. If the wrong account is selected, add `--browser <name> --profile <name>`. For headless use, set `GH_ATTACH_SESSION_TOKEN` to the bare `user_session` cookie value. Treat it as a full account credential.
+Uploads use a GitHub browser session cookie, not the `gh` token. By default, `gh` must be authenticated so `gh-attach` can select the matching browser account. If the wrong account is selected, add `--browser <name> --profile <name>`. For a headless SSH host, run `gh attach session transfer --ssh user@host` on the browser computer once; the remote upload command automatically reads the protected token file. `session_token_file` in `${XDG_CONFIG_HOME:-~/.config}/gh/attach.yml` overrides that file path. Treat the cookie as a full account credential and never print its value.
+
+## When a saved session expires
+
+A browser session can expire or be revoked. If an SSH upload fails with an authentication error, tell the user that the saved session may need refreshing. Ask them to sign in to GitHub in a browser on their own computer and run this command there, using their SSH host and any `--browser` or `--profile` options they needed for the first transfer:
+
+```sh
+gh attach session transfer --ssh user@host
+```
+
+If `session_token_file` points elsewhere, move the refreshed file to that configured path on the SSH host and keep it private (mode `600` on Unix). Retry the upload after the transfer. Never ask the user to paste the cookie into chat or print it for troubleshooting.
 
 ## Steps
 

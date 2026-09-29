@@ -92,6 +92,9 @@ func (r *CookieResolver) Resolve(ctx context.Context, host string, ghLogin func(
 		}
 	}
 
+	if host == "github.com" {
+		return ResolvedCookies{}, fmt.Errorf("failed to resolve usable cookie source from %d attempt(s); for SSH uploads, run gh attach session transfer from a computer with a signed-in GitHub browser", attempts)
+	}
 	return ResolvedCookies{}, fmt.Errorf("failed to resolve usable cookie source from %d attempt(s)", attempts)
 }
 
