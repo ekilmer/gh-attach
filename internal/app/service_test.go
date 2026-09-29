@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sudosubin/gh-attach/internal/github/attachments"
+	"github.com/ekilmer/gh-attach/internal/github/attachments"
 )
 
 func TestUploadFiles_ContinuesAfterError(t *testing.T) {

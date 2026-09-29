@@ -9,7 +9,7 @@ func TestValuesForHost_ExcludesOtherSubdomains(t *testing.T) {
 	t.Parallel()
 
 	in := []*http.Cookie{
-		{Name: "dotcom_user", Value: "sudosubin", Domain: "gist.github.com", Path: "/"},
+		{Name: "dotcom_user", Value: "ekilmer", Domain: "gist.github.com", Path: "/"},
 		{Name: "dotcom_user", Value: "other-user", Domain: "github.com", Path: "/"},
 	}
 

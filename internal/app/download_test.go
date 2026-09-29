@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sudosubin/gh-attach/internal/browserprovider"
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/browserprovider"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 func TestParseAttachmentURL(t *testing.T) {

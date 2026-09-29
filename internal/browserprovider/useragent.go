@@ -3,7 +3,7 @@ package browserprovider
 import (
 	"strings"
 
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 // browserFamily resolves a browser's version and assembles its User-Agent.

@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/sudosubin/gh-attach/internal/github/web"
+	"github.com/ekilmer/gh-attach/internal/github/web"
 )
 
 func TestIssueNewPageFetcher_ReturnsNilOnStatusCodeError(t *testing.T) {

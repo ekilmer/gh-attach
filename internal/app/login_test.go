@@ -10,9 +10,9 @@ func TestLoginForToken(t *testing.T) {
 	const multiAccount = `
 hosts:
   github.com:
-    user: sudosubin
+    user: ekilmer
     users:
-      sudosubin:
+      ekilmer:
         oauth_token: tok-sudo
       other:
         oauth_token: tok-other
@@ -20,15 +20,15 @@ hosts:
 	const legacy = `
 hosts:
   github.com:
-    user: sudosubin
+    user: ekilmer
     oauth_token: tok-legacy
 `
 	const keyringOnly = `
 hosts:
   github.com:
-    user: sudosubin
+    user: ekilmer
     users:
-      sudosubin:
+      ekilmer:
 `
 	const enterprise = `
 hosts:
@@ -52,7 +52,7 @@ hosts:
 			yaml:      multiAccount,
 			host:      "github.com",
 			token:     "tok-sudo",
-			wantLogin: "sudosubin",
+			wantLogin: "ekilmer",
 			wantOK:    true,
 		},
 		{
@@ -75,7 +75,7 @@ hosts:
 			yaml:      legacy,
 			host:      "github.com",
 			token:     "tok-legacy",
-			wantLogin: "sudosubin",
+			wantLogin: "ekilmer",
 			wantOK:    true,
 		},
 		{

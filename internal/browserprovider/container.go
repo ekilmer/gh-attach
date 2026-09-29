@@ -7,8 +7,8 @@ import (
 	"slices"
 	"strconv"
 
+	"github.com/ekilmer/gh-attach/internal/cookies"
 	libsweetcookie "github.com/steipete/sweetcookie"
-	"github.com/sudosubin/gh-attach/internal/cookies"
 )
 
 type containerGroupKey struct {

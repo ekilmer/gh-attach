@@ -11,8 +11,8 @@ import (
 
 	"github.com/cli/go-gh/v2/pkg/api"
 	"github.com/cli/go-gh/v2/pkg/auth"
-	"github.com/sudosubin/gh-attach/internal/cookies"
-	"github.com/sudosubin/gh-attach/internal/github/web"
+	"github.com/ekilmer/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/github/web"
 )
 
 const bearerUserAgent = "gh-attach"
