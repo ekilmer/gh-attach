@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 func TestNewDefaultRegistry(t *testing.T) {
@@ -66,8 +66,8 @@ func TestBrowserProviderLoad_ReturnsSessionPerSet(t *testing.T) {
 					t.Fatalf("source.Browser = %q, want %q", source.Browser, cookies.BrowserFirefox)
 				}
 				return []CookieSet{
-					{Profile: "default:sudosubin@gmail.com", Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "sudosubin"}}},
-					{Profile: "default:sudosubin@example.com", Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "octocat"}}},
+					{Profile: "default:ekilmer@gmail.com", Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "ekilmer"}}},
+					{Profile: "default:ekilmer@example.com", Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "octocat"}}},
 				}, nil
 			},
 		},
@@ -92,7 +92,7 @@ func TestBrowserProviderLoad_ReturnsSessionPerSet(t *testing.T) {
 			t.Fatalf("session[%d].UserAgent = %q", i, s.UserAgent)
 		}
 	}
-	if sessions[0].Profile != "default:sudosubin@gmail.com" || sessions[1].Profile != "default:sudosubin@example.com" {
+	if sessions[0].Profile != "default:ekilmer@gmail.com" || sessions[1].Profile != "default:ekilmer@example.com" {
 		t.Fatalf("session profiles = %q,%q", sessions[0].Profile, sessions[1].Profile)
 	}
 }
@@ -105,7 +105,7 @@ func TestBrowserProviderLoad_FailsOnAutoProviderBrowser(t *testing.T) {
 		backend: stubBackend{
 			name: "stub",
 			load: func(_ context.Context, _ string, _ cookies.Source) ([]CookieSet, error) {
-				return []CookieSet{{Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "sudosubin"}}}}, nil
+				return []CookieSet{{Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "ekilmer"}}}}, nil
 			},
 		},
 	}

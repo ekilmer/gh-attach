@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/sudosubin/gh-attach/internal/github/web"
+	"github.com/ekilmer/gh-attach/internal/github/web"
 )
 
 // RefererPage carries the referer URL and the metadata parsed from its HTML at fetch time.

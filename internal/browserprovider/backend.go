@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 type CookieSet struct {

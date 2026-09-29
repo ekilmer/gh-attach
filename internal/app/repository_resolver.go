@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/sudosubin/gh-attach/internal/github/attachments"
-	"github.com/sudosubin/gh-attach/internal/github/rest"
+	"github.com/ekilmer/gh-attach/internal/github/attachments"
+	"github.com/ekilmer/gh-attach/internal/github/rest"
 )
 
 // RepositoryIDResolver resolves the numeric repository_id the upload API needs.

@@ -10,10 +10,10 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/ekilmer/gh-attach/internal/app"
+	"github.com/ekilmer/gh-attach/internal/config"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 	"github.com/spf13/cobra"
-	"github.com/sudosubin/gh-attach/internal/app"
-	"github.com/sudosubin/gh-attach/internal/config"
-	"github.com/sudosubin/gh-attach/internal/cookies"
 )
 
 const sessionTokenEnv = "GH_ATTACH_SESSION_TOKEN"

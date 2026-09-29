@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 // BrowserSessionToken returns the login cookie from the browser account matched

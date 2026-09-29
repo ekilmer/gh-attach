@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/sudosubin/gh-attach/internal/github/attachments"
+	"github.com/ekilmer/gh-attach/internal/github/attachments"
 )
 
 func TestWriteAsset_DefaultOutputIsHref(t *testing.T) {

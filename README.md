@@ -2,10 +2,10 @@
 
 # gh-attach
 
-[![version](https://badgen.net/github/release/sudosubin/gh-attach?label=version)](https://github.com/sudosubin/gh-attach/releases)
-[![license](https://badgen.net/github/license/sudosubin/gh-attach?color=green)](./LICENSE)
-[![downloads](https://img.shields.io/github/downloads/sudosubin/gh-attach/total?color=green)](https://github.com/sudosubin/gh-attach/releases)
-[![skills.sh](https://skills.sh/b/sudosubin/gh-attach)](https://skills.sh/sudosubin/gh-attach)
+[![version](https://badgen.net/github/release/ekilmer/gh-attach?label=version)](https://github.com/ekilmer/gh-attach/releases)
+[![license](https://badgen.net/github/license/ekilmer/gh-attach?color=green)](./LICENSE)
+[![downloads](https://img.shields.io/github/downloads/ekilmer/gh-attach/total?color=green)](https://github.com/ekilmer/gh-attach/releases)
+[![skills.sh](https://skills.sh/b/ekilmer/gh-attach)](https://skills.sh/ekilmer/gh-attach)
 
 A GitHub CLI extension that uploads and downloads GitHub attachments.
 
@@ -15,10 +15,12 @@ A GitHub CLI extension that uploads and downloads GitHub attachments.
 
 </div>
 
+This fork started from [sudosubin/gh-attach](https://github.com/sudosubin/gh-attach) and includes additional modifications. The original project uses the MIT License, which requires copies or substantial portions to include its copyright and permission notice. This fork retains that notice in [LICENSE](./LICENSE).
+
 ## Quick Start
 
 ```sh
-gh extension install sudosubin/gh-attach
+gh extension install ekilmer/gh-attach
 gh attach ./image.png -R owner/repo
 ```
 
@@ -27,7 +29,7 @@ gh attach ./image.png -R owner/repo
 Requires [GitHub CLI](https://github.com/cli/cli#installation). Browser-cookie mode also requires `gh auth login`. Session-token mode does not when the repository ID is available from GitHub's page.
 
 ```sh
-gh extension install sudosubin/gh-attach
+gh extension install ekilmer/gh-attach
 gh attach ./image.png -R owner/repo
 ```
 
@@ -99,7 +101,7 @@ Downloads use an explicit session token or browser selection first. Otherwise th
 `gh-attach` ships as an [agent skill](https://agentskills.io), so AI coding agents can attach screenshots or files to a PR or issue, embed them as Markdown, and download `user-attachments` URLs from a natural-language request like *"attach this screenshot to the PR"*.
 
 ```sh
-npx skills add sudosubin/gh-attach
+npx skills add ekilmer/gh-attach
 ```
 
 The [Agent Skills standard](https://agentskills.io/clients) is supported by Claude Code, OpenAI Codex, Cursor, GitHub Copilot, and more.

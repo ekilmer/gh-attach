@@ -1,4 +1,4 @@
-module github.com/sudosubin/gh-attach
+module github.com/ekilmer/gh-attach
 
 go 1.25.12
 

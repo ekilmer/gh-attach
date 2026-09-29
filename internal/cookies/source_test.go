@@ -120,7 +120,7 @@ func TestParseProfileSelector(t *testing.T) {
 		{"profile only", "default", ProfileSelector{Profile: "default"}},
 		{"profile + name", "default:Work", ProfileSelector{Profile: "default", Container: "Work"}},
 		{"profile + id", "default:id=2", ProfileSelector{Profile: "default", Container: "2", MatchByID: true}},
-		{"profile + name with email-like value", "default:sudosubin@example.com", ProfileSelector{Profile: "default", Container: "sudosubin@example.com"}},
+		{"profile + name with email-like value", "default:ekilmer@example.com", ProfileSelector{Profile: "default", Container: "ekilmer@example.com"}},
 		{"empty profile + name", ":Work", ProfileSelector{Profile: "", Container: "Work"}},
 		{"profile with empty container suffix", "default:", ProfileSelector{Profile: "default"}},
 		{"profile + name containing colon", "default:scope:value", ProfileSelector{Profile: "default", Container: "scope:value"}},

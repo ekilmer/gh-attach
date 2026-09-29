@@ -7,8 +7,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/sudosubin/gh-attach/internal/browserprovider"
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/browserprovider"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 type ResolvedCookies struct {

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sudosubin/gh-attach/internal/browserprovider"
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/browserprovider"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 func TestBrowserSessionTokenReportsCookieExpiry(t *testing.T) {

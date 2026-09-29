@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ekilmer/gh-attach/internal/app"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 	"github.com/spf13/cobra"
-	"github.com/sudosubin/gh-attach/internal/app"
-	"github.com/sudosubin/gh-attach/internal/cookies"
 )
 
 type SessionTransferOptions struct {
