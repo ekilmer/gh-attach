@@ -14,7 +14,7 @@ license: MIT
 gh extension list | grep -q 'gh attach' || gh extension install sudosubin/gh-attach
 ```
 
-Uploads use a GitHub browser session cookie, not the `gh` token. By default, `gh` must be authenticated so `gh-attach` can select the matching browser account. If the wrong account is selected, add `--browser <name> --profile <name>`. For headless use, set `GH_ATTACH_SESSION_TOKEN` to the bare `user_session` cookie value. Treat it as a full account credential.
+Uploads use a GitHub browser session cookie, not the `gh` token. By default, `gh` must be authenticated so `gh-attach` can select the matching browser account. If the wrong account is selected, add `--browser <name> --profile <name>`. For a headless SSH host, run `gh attach session transfer --ssh user@host` on the browser computer once; the remote upload command automatically reads the protected token file. `session_token_file` in `${XDG_CONFIG_HOME:-~/.config}/gh/attach.yml` overrides that file path. Treat the cookie as a full account credential and never print its value.
 
 ## Steps
 

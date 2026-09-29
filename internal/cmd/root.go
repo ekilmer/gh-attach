@@ -26,7 +26,7 @@ func NewCmdRoot() *cobra.Command {
 	cmd.SilenceErrors = true
 	cmd.SetUsageTemplate(usageTemplate)
 	cmd.CompletionOptions.DisableDefaultCmd = true
-	cmd.AddCommand(NewCmdUpload(nil), NewCmdDownload(nil))
+	cmd.AddCommand(NewCmdUpload(nil), NewCmdDownload(nil), NewCmdSession())
 	return cmd
 }
 

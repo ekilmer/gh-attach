@@ -10,7 +10,8 @@ import (
 )
 
 type Config struct {
-	Browsers []BrowserEntry `yaml:"browsers"`
+	Browsers         []BrowserEntry `yaml:"browsers"`
+	SessionTokenFile string         `yaml:"session_token_file"`
 }
 
 type BrowserEntry struct {
@@ -19,16 +20,28 @@ type BrowserEntry struct {
 	CookieStorePath string `yaml:"cookie_store_path"`
 }
 
-func DefaultConfigFile() string {
+func defaultConfigDir() string {
 	if xdg := strings.TrimSpace(os.Getenv("XDG_CONFIG_HOME")); xdg != "" {
-		return filepath.Join(xdg, "gh", "attach.yml")
+		return filepath.Join(xdg, "gh")
 	}
 
 	if home, err := os.UserHomeDir(); err == nil {
-		return filepath.Join(home, ".config", "gh", "attach.yml")
+		return filepath.Join(home, ".config", "gh")
 	}
 
-	return "attach.yml"
+	return "."
+}
+
+func DefaultConfigFile() string {
+	return filepath.Join(defaultConfigDir(), "attach.yml")
+}
+
+func DefaultSessionTokenFile() string {
+	dir := defaultConfigDir()
+	if dir == "." {
+		return ""
+	}
+	return filepath.Join(dir, "attach-session")
 }
 
 func LoadConfig(path string) (Config, error) {
@@ -50,6 +63,7 @@ func LoadConfig(path string) (Config, error) {
 		cfg.Browsers[i].Profile = strings.TrimSpace(cfg.Browsers[i].Profile)
 		cfg.Browsers[i].CookieStorePath = strings.TrimSpace(cfg.Browsers[i].CookieStorePath)
 	}
+	cfg.SessionTokenFile = strings.TrimSpace(cfg.SessionTokenFile)
 
 	return cfg, nil
 }

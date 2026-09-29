@@ -32,6 +32,13 @@ func TestDefaultConfigFile(t *testing.T) {
 	})
 }
 
+func TestDefaultSessionTokenFile(t *testing.T) {
+	t.Setenv("XDG_CONFIG_HOME", "/tmp/gh-attach-xdg")
+	if got, want := DefaultSessionTokenFile(), "/tmp/gh-attach-xdg/gh/attach-session"; got != want {
+		t.Fatalf("DefaultSessionTokenFile() = %q, want %q", got, want)
+	}
+}
+
 func TestLoadConfig(t *testing.T) {
 	t.Run("returns empty config when file does not exist", func(t *testing.T) {
 		path := filepath.Join(t.TempDir(), "does-not-exist.yml")
@@ -48,7 +55,8 @@ func TestLoadConfig(t *testing.T) {
 	t.Run("parses attach.yml browsers format", func(t *testing.T) {
 		dir := t.TempDir()
 		path := filepath.Join(dir, "attach.yml")
-		content := `browsers:
+		content := `session_token_file: " /tmp/gh-session "
+browsers:
   - browser: " chrome "
     profile: " Default "
     cookie_store_path: " /tmp/chrome-cookies "
@@ -66,6 +74,7 @@ func TestLoadConfig(t *testing.T) {
 		}
 
 		want := Config{
+			SessionTokenFile: "/tmp/gh-session",
 			Browsers: []BrowserEntry{
 				{Browser: "chrome", Profile: "Default", CookieStorePath: "/tmp/chrome-cookies"},
 				{Browser: "firefox", Profile: "default-release", CookieStorePath: ""},

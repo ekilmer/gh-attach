@@ -3,11 +3,16 @@ package cmd
 import (
 	"context"
 	"errors"
+	"fmt"
+	"io"
 	"os"
+	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/sudosubin/gh-attach/internal/app"
+	"github.com/sudosubin/gh-attach/internal/config"
 	"github.com/sudosubin/gh-attach/internal/cookies"
 )
 
@@ -51,7 +56,7 @@ func newCmdUpload(use string, runF func(*AttachOptions) error) *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			opts.FilePaths = args
 			var err error
-			opts.SessionToken, err = sessionToken(cmd, opts.SessionToken)
+			opts.SessionToken, err = uploadSessionToken(cmd, opts.SessionToken)
 			if err != nil {
 				return err
 			}
@@ -97,6 +102,66 @@ func sessionToken(cmd *cobra.Command, flagValue string) (string, error) {
 		return "", errors.New("session token is empty")
 	}
 	return value, nil
+}
+
+func uploadSessionToken(cmd *cobra.Command, flagValue string) (string, error) {
+	token, err := sessionToken(cmd, flagValue)
+	if token != "" || err != nil {
+		return token, err
+	}
+	for _, name := range []string{"browser", "profile", "cookie-store-path"} {
+		if cmd.Flags().Changed(name) {
+			return "", nil
+		}
+	}
+	cfg, err := config.LoadConfig(config.DefaultConfigFile())
+	if err != nil {
+		return "", err
+	}
+	path := cfg.SessionTokenFile
+	if path == "" {
+		path = config.DefaultSessionTokenFile()
+		if path == "" {
+			return "", nil
+		}
+	}
+	token, err = readSessionTokenFile(path)
+	if cfg.SessionTokenFile == "" && errors.Is(err, os.ErrNotExist) {
+		return "", nil
+	}
+	return token, err
+}
+
+func readSessionTokenFile(path string) (string, error) {
+	if !filepath.IsAbs(path) {
+		return "", errors.New("session token file path must be absolute")
+	}
+	f, err := os.Open(path)
+	if err != nil {
+		return "", fmt.Errorf("open session token file: %w", err)
+	}
+	defer func() { _ = f.Close() }()
+
+	info, err := f.Stat()
+	if err != nil {
+		return "", fmt.Errorf("stat session token file: %w", err)
+	}
+	if !info.Mode().IsRegular() {
+		return "", errors.New("session token file must be a regular file")
+	}
+	if runtime.GOOS != "windows" && info.Mode().Perm()&0o077 != 0 {
+		return "", errors.New("session token file must not be readable by other users (chmod 600)")
+	}
+
+	data, err := io.ReadAll(f)
+	if err != nil {
+		return "", fmt.Errorf("read session token file: %w", err)
+	}
+	token := strings.TrimSpace(string(data))
+	if token == "" {
+		return "", errors.New("session token file is empty")
+	}
+	return token, nil
 }
 
 func attachRun(opts *AttachOptions) error {

@@ -120,6 +120,26 @@ The [Agent Skills standard](https://agentskills.io/clients) is supported by Clau
 
 You can use a config file to register frequently used browser settings without having to pass them as command line arguments each time.
 
+### SSH and headless uploads
+
+Run this command on the computer where you are signed in to GitHub in a browser, using the SSH host name you normally connect to:
+
+```sh
+gh attach session transfer --ssh user@server
+```
+
+The command selects the browser session matching your local `gh` login, sends its `user_session` cookie over SSH standard input, and reports the cookie's expiration when the browser provides it. Use `--browser` and `--profile` if you need a particular browser profile. The cookie value is never printed or passed as a command argument. The remote copy goes to `${XDG_CONFIG_HOME:-~/.config}/gh/attach-session` with file mode `600` on Unix.
+
+Once transferred, agents on the SSH host can upload without further authentication flags:
+
+```sh
+gh attach ./example.zip -R owner/repo
+```
+
+Uploads use the default token file automatically when no `--session-token`, `GH_ATTACH_SESSION_TOKEN`, or explicit browser option is supplied. To use a different path, move the transferred file there and set `session_token_file: /absolute/path` in `attach.yml`. A flag or environment token takes precedence. Downloads continue to try the active `gh` token first; use `GH_ATTACH_SESSION_TOKEN` explicitly if a download needs the browser session.
+
+The cookie logs in as your GitHub account. [GitHub lists its lifetime as two weeks](https://docs.github.com/en/site-policy/privacy-policies/github-cookies#cookies), so refresh the file when the session expires. Do not place the cookie value in `attach.yml` or share it with an agent in a prompt.
+
 The config file is loaded from `${XDG_CONFIG_HOME:-~/.config}/gh/attach.yml`.
 
 **Example**
@@ -135,6 +155,7 @@ browsers:
 
 **Schema**
 
+- `session_token_file`: Absolute path to a private file containing a bare `user_session` cookie (Optional, overrides the default token file for uploads).
 - `browser`: Browser to read cookies from (Required, one of `auto|arc|atlas|brave|chrome|chromium|comet|dia|edge|firefox|floorp|helium|librewolf|opera|safari|vivaldi|waterfox|whale|zen`)
 - `profile`: Browser profile name/path (Optional, name or path)
 - `cookie_store_path`: Explicit cookie DB file path (Optional)
