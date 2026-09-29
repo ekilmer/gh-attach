@@ -31,6 +31,18 @@ gh extension install sudosubin/gh-attach
 gh attach ./image.png -R owner/repo
 ```
 
+### Install from a local checkout
+
+From the repository root, build the executable before installing the local extension:
+
+```sh
+go build -o gh-attach ./cmd/gh-attach
+gh extension install .
+gh attach --help
+```
+
+For local installs, `gh extension install .` links to this checkout; it does not build the Go executable. After source changes, rerun the `go build` command. If the extension is already installed, building the executable is enough; you do not need to reinstall it.
+
 ## Usage
 
 ```sh
