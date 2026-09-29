@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/sudosubin/gh-attach/internal/browserprovider"
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/browserprovider"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 type fakeAPILogin struct {
@@ -59,14 +59,14 @@ func TestSessionResolver_UsesLoginToMatchCookies(t *testing.T) {
 			sessions: []browserprovider.BrowserSession{{
 				Browser:   cookies.BrowserChromium,
 				Profile:   "Default",
-				Cookies:   []*http.Cookie{{Name: "dotcom_user", Value: "sudosubin"}},
+				Cookies:   []*http.Cookie{{Name: "dotcom_user", Value: "ekilmer"}},
 				UserAgent: "ua",
 			}},
 		},
 	}
 
 	sr := NewSessionResolver(
-		fakeLoginResolver{login: "sudosubin"},
+		fakeLoginResolver{login: "ekilmer"},
 		NewCookieResolver(providers, false, nil),
 	)
 
@@ -133,13 +133,13 @@ func TestSessionResolver_CookieLoadingOverlapsLogin(t *testing.T) {
 			started: loadStarted,
 			sessions: []browserprovider.BrowserSession{{
 				Browser: cookies.BrowserChromium,
-				Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "sudosubin"}},
+				Cookies: []*http.Cookie{{Name: "dotcom_user", Value: "ekilmer"}},
 			}},
 		},
 	}
 
 	sr := NewSessionResolver(
-		blockingLoginResolver{gate: loginGate, login: "sudosubin"},
+		blockingLoginResolver{gate: loginGate, login: "ekilmer"},
 		NewCookieResolver(providers, false, nil),
 	)
 

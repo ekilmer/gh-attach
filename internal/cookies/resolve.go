@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/sudosubin/gh-attach/internal/config"
+	"github.com/ekilmer/gh-attach/internal/config"
 )
 
 type ResolveInput struct {

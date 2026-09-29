@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/sudosubin/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/cookies"
 )
 
 // LoginResolver resolves the login the upload acts as, used to pick the matching cookie container.

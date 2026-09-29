@@ -5,7 +5,7 @@ import (
 
 	"github.com/cli/go-gh/v2/pkg/auth"
 	"github.com/cli/go-gh/v2/pkg/config"
-	"github.com/sudosubin/gh-attach/internal/github/rest"
+	"github.com/ekilmer/gh-attach/internal/github/rest"
 )
 
 // lazyAPILoginResolver builds the REST client only when the API fallback runs.

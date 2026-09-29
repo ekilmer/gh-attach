@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/sudosubin/gh-attach/internal/github/web"
+	"github.com/ekilmer/gh-attach/internal/github/web"
 )
 
 func newTestUploader(server *httptest.Server, enterprise bool) *Uploader {

@@ -11,7 +11,7 @@ license: MIT
 ## Prerequisites
 
 ```sh
-gh extension list | grep -q 'gh attach' || gh extension install sudosubin/gh-attach
+gh extension list | grep -q 'gh attach' || gh extension install ekilmer/gh-attach
 ```
 
 Uploads use a GitHub browser session cookie, not the `gh` token. By default, `gh` must be authenticated so `gh-attach` can select the matching browser account. If the wrong account is selected, add `--browser <name> --profile <name>`. For headless use, set `GH_ATTACH_SESSION_TOKEN` to the bare `user_session` cookie value. Treat it as a full account credential.

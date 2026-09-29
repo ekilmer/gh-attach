@@ -6,8 +6,8 @@ import (
 	"slices"
 	"testing"
 
+	"github.com/ekilmer/gh-attach/internal/cookies"
 	libsweetcookie "github.com/steipete/sweetcookie"
-	"github.com/sudosubin/gh-attach/internal/cookies"
 )
 
 func TestContainerMatches(t *testing.T) {
@@ -117,12 +117,12 @@ func TestFinalizeContainerGroups_SplitsByContainerAndSortsDeterministically(t *t
 	t.Parallel()
 
 	groups := map[containerGroupKey][]*http.Cookie{
-		{Profile: "default", ContainerID: 2, ContainerName: "sudosubin@example.com"}: {
+		{Profile: "default", ContainerID: 2, ContainerName: "ekilmer@example.com"}: {
 			{Name: "dotcom_user", Value: "octocat"},
 			{Name: "user_session", Value: "octocat-session"},
 		},
-		{Profile: "default", ContainerID: 1, ContainerName: "sudosubin@gmail.com"}: {
-			{Name: "dotcom_user", Value: "sudosubin"},
+		{Profile: "default", ContainerID: 1, ContainerName: "ekilmer@gmail.com"}: {
+			{Name: "dotcom_user", Value: "ekilmer"},
 			{Name: "user_session", Value: "sudo-session"},
 		},
 		{Profile: "default"}: {
@@ -132,7 +132,7 @@ func TestFinalizeContainerGroups_SplitsByContainerAndSortsDeterministically(t *t
 
 	sets := finalizeContainerGroups(groups)
 
-	wantProfiles := []string{"default", "default:sudosubin@gmail.com", "default:sudosubin@example.com"}
+	wantProfiles := []string{"default", "default:ekilmer@gmail.com", "default:ekilmer@example.com"}
 	gotProfiles := make([]string, 0, len(sets))
 	for _, s := range sets {
 		gotProfiles = append(gotProfiles, s.Profile)
@@ -142,9 +142,9 @@ func TestFinalizeContainerGroups_SplitsByContainerAndSortsDeterministically(t *t
 	}
 
 	wantCookies := map[string]map[string]string{
-		"default":                       {"_octo": "anon"},
-		"default:sudosubin@gmail.com":   {"dotcom_user": "sudosubin", "user_session": "sudo-session"},
-		"default:sudosubin@example.com": {"dotcom_user": "octocat", "user_session": "octocat-session"},
+		"default":                     {"_octo": "anon"},
+		"default:ekilmer@gmail.com":   {"dotcom_user": "ekilmer", "user_session": "sudo-session"},
+		"default:ekilmer@example.com": {"dotcom_user": "octocat", "user_session": "octocat-session"},
 	}
 	for _, s := range sets {
 		got := map[string]string{}

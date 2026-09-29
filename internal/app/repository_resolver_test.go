@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/sudosubin/gh-attach/internal/github/attachments"
-	"github.com/sudosubin/gh-attach/internal/github/rest"
+	"github.com/ekilmer/gh-attach/internal/github/attachments"
+	"github.com/ekilmer/gh-attach/internal/github/rest"
 )
 
 type fakeAPIRepository struct {

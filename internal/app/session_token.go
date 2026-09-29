@@ -7,9 +7,9 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/sudosubin/gh-attach/internal/browserprovider"
-	"github.com/sudosubin/gh-attach/internal/cookies"
-	"github.com/sudosubin/gh-attach/internal/github/web"
+	"github.com/ekilmer/gh-attach/internal/browserprovider"
+	"github.com/ekilmer/gh-attach/internal/cookies"
+	"github.com/ekilmer/gh-attach/internal/github/web"
 )
 
 func newTokenSession(host, value string) (web.Session, error) {
